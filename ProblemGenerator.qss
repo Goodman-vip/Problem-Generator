@@ -1,0 +1,150 @@
+﻿QPushButton 
+{
+    font-size: 12px;
+    color:white;
+    padding:5px;
+	background-color:rgb(0, 188, 71);
+	border-radius:5px;
+}
+
+QPushButton:hover
+{
+    background-color:#00d14d;
+    color:white;
+}
+
+
+QProgressBar
+{
+	border-radius:5px;
+	text-align:center;
+	font-size:11px;
+	color:white;
+	background: #1D5573 ;
+}
+
+
+QTextBrowser QScrollBar::vertical
+{ 
+    width:10px;
+    background:transparent;
+    border:none;
+    border-radius:5px;
+}
+QTextBrowser QScrollBar::handle::vertical
+{ 
+    border-radius:5px;
+    width: 10px;
+    background:rgb(232,232,232);
+}
+QTextBrowser QScrollBar::handle::vertical::hover
+{
+    background:rgb(255,255,255);
+}
+QTextBrowser QScrollBar::add-line::vertical
+{
+    border:none;
+}
+QTextBrowser QScrollBar::sub-line::vertical
+{
+    border:none;
+}
+
+
+QScrollArea
+{
+    border: 0px solid;
+    border-right-width: 1px;
+    border-right-color: #dcdbdc;
+    background-color: #f5f5f7;
+}
+QScrollBar:vertical, QScrollBar:horizontal
+{
+    border: none;
+    background: #f5f5f7;
+    width: 8px;
+    margin: 0px 0 0px 0;
+}
+QScrollBar::handle:vertical 
+{
+    background: Gainsboro;
+    min-height: 20px;
+    border-radius: 4px;
+    border: none;
+}
+QScrollBar::add-line:vertical 
+{
+    border: 0px solid grey;
+    background: #32CC99;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical 
+{
+    border: 0px solid grey;
+    background: #32CC99;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical 
+{
+    background: none;
+    width: 0px;
+    height: 0px;
+}
+
+
+QCheckBox
+{
+    border: none;/*最外层边框*/
+}
+QCheckBox::indicator
+{
+    /*选择框尺寸*/
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px solid #b1b1b1;
+    width: 70px;
+    height: 70px;
+}
+QCheckBox:enabled:checked
+{
+    color: rgb(255, 255, 255);
+}
+QCheckBox:enabled:!checked{
+    color: rgb(255, 255, 255);
+}
+QCheckBox:enabled:hover
+{
+    color: rgb(0, 200, 0);
+}
+QCheckBox:!enabled{
+    color: rgb(80, 80, 80);
+}
+ 
+QCheckBox::indicator:unchecked 
+{
+    image: url(:/uiDesign/Switch_OFF.png);
+}
+QCheckBox::indicator:unchecked:pressed 
+{
+    image: url(:/uiDesign/Switch_ON.png);
+}
+QCheckBox::indicator:unchecked:disabled 
+{
+     image: url(:/uiDesign/Switch_OFF_DISABLED.png);
+}
+QCheckBox::indicator:checked 
+{
+        image: url(:/uiDesign/Switch_ON.png);
+}
+QCheckBox::indicator:checked:pressed 
+{
+    image: url(:/uiDesign/Switch_OFF.png);
+}
+QCheckBox::indicator:checked:disabled 
+{
+    image: url(:/uiDesign/Switch_ON_DISABLED.png);
+}
+

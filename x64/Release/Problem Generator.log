@@ -1,0 +1,10 @@
+﻿   Qt/MSBuild: 3.4.1.0
+   Qt: 6.5.2
+  ProblemGenerator.cpp
+  moc_ProblemGenerator.cpp
+  正在生成代码
+  118 of 409 functions (28.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    45 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  Problem Generator.vcxproj -> D:\My_Application\Qt_Demo\application\x64\Release\Problem Generator.exe

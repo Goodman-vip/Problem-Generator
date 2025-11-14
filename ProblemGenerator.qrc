@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ProblemGenerator.qss</file>
+        <file>uiDesign/addItem.png</file>
+        <file>uiDesign/arrow_down.png</file>
+        <file>uiDesign/arrow_up.png</file>
+        <file>uiDesign/Check_OFF.png</file>
+        <file>uiDesign/Check_ON.png</file>
+        <file>uiDesign/Delete.png</file>
+        <file>uiDesign/Delete_HOVER.png</file>
+        <file>uiDesign/RadioBtn_Clicked.png</file>
+        <file>uiDesign/RadioBtn_Unclicked.png</file>
+        <file>uiDesign/Setting.png</file>
+        <file>uiDesign/Switch_OFF.png</file>
+        <file>uiDesign/Switch_ON.png</file>
+    </qresource>
+</RCC>
