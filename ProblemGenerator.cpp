@@ -42,18 +42,14 @@ void ProblemGenerator::Connect_Init()
         int value = text.toInt(&ok);
         if (ok) marginNum = value;
         });
-    connect(ui.posRtn, &QRadioButton::toggled, this, [this](bool checked) {
-        posRtn = checked ? 1 : 0;
-        });
-    connect(ui.borderRtn, &QRadioButton::toggled, this, [this](bool checked) {
-        borderRtn = checked ? 1 : 0;
-        });
-    connect(ui.portraitRtn, &QRadioButton::toggled, this, [this](bool checked) {
-        portraitRtn = checked ? 1 : 0;
-        });
-    connect(ui.ansRtn, &QRadioButton::toggled, this, [this](bool checked) {
-        ansRtn = checked ? 1 : 0;
-        });
+    connect(ui.posRtn, &QRadioButton::toggled, this, [this](bool checked) { posRtn = checked ? 1 : 0; });
+    connect(ui.borderRtn, &QRadioButton::toggled, this, [this](bool checked) { borderRtn = checked ? 1 : 0; });
+    connect(ui.portraitRtn, &QRadioButton::toggled, this, [this](bool checked) { portraitRtn = checked ? 1 : 0; });
+    connect(ui.ansRtn, &QRadioButton::toggled, this, [this](bool checked) { ansRtn = checked ? 1 : 0; });
+    connect(ui.addRtn, &QRadioButton::toggled, this, [this](bool checked) { addRtn = checked ? 1 : 0; });
+	connect(ui.minusRtn, &QRadioButton::toggled, this, [this](bool checked) { minusRtn = checked ? 1 : 0; });
+    connect(ui.timesRtn, &QRadioButton::toggled, this, [this](bool checked) { timesRtn = checked ? 1 : 0; });
+    connect(ui.divideRtn, &QRadioButton::toggled, this, [this](bool checked) { divideRtn = checked ? 1 : 0; });
 }
 void ProblemGenerator::UI_Init()
 {
@@ -84,6 +80,10 @@ void ProblemGenerator::getNums(){
     borderRtn = ui.borderRtn->isChecked();
     portraitRtn = ui.portraitRtn->isChecked();
     ansRtn = ui.ansRtn->isChecked();
+    addRtn = ui.addRtn->isChecked();
+	minusRtn = ui.minusRtn->isChecked();
+	timesRtn = ui.timesRtn->isChecked();
+    divideRtn = ui.divideRtn->isChecked();
     total = 0;
     QStringList totList = totNum.split(',', Qt::SkipEmptyParts);
     QStringList segList = segNum.split(',', Qt::SkipEmptyParts); 
@@ -218,7 +218,11 @@ void ProblemGenerator::on_saveBtn_clicked()
         << posRtn << " "
         << borderRtn << " "
         << portraitRtn << " "
-        << ansRtn;
+        << ansRtn << " "
+		<< addRtn << " "
+		<< minusRtn << " "
+		<< timesRtn << " "
+		<< divideRtn << "\n";
     file.close();
 
     qDebug() << "Saved config to cache:" << filePath;

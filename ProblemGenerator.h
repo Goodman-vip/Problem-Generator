@@ -232,7 +232,7 @@ protected:
         file.close();
 
         QStringList parts = rest.split(' ', Qt::SkipEmptyParts);
-        if (parts.size() < 6) {
+        if (parts.size() < 10) {
             qWarning() << "Config file format invalid.";
             return;
         }
@@ -243,6 +243,11 @@ protected:
         borderRtn = parts[3].toInt();
         portraitRtn = parts[4].toInt();
         ansRtn = parts[5].toInt();
+
+        addRtn = parts[6].toInt();
+		minusRtn = parts[7].toInt();
+		timesRtn = parts[8].toInt();
+        divideRtn = parts[9].toInt();
 
         ui.get_maxNum->setText(QString::number(maxNum));
         ui.get_minAns->setText(QString::number(minAns));
@@ -255,8 +260,12 @@ protected:
         ui.borderRtn->setChecked(borderRtn);
         ui.portraitRtn->setChecked(portraitRtn);
         ui.ansRtn->setChecked(ansRtn);
+        ui.addRtn->setChecked(addRtn);
+		ui.minusRtn->setChecked(minusRtn);
+		ui.timesRtn->setChecked(timesRtn);
+		ui.divideRtn->setChecked(divideRtn);
     }
-    QString generateQuestion(int seg)
+    /*QString generateQuestion(int seg)
     {
         int now = 0, cnt = 0; QString s;
         go:now=rand(1, maxNum),s = QString("%1").arg(now);
@@ -279,6 +288,144 @@ protected:
         ans.emplace_back(QString::number(now));
         questions.emplace_back(s);
         return s;
+    }*/
+    int countOperators(const QString& s) {
+        int cnt = 0;
+        for (QChar c : s)  if ((c <'0' || c>'9') && c!='=')  cnt++;
+        return cnt;
+    }
+    QString generateSegment(int mulDivOps, int& value)
+    {
+        // 包含 mulDivOps 个乘除运算符的段
+        //（禁止 ÷1、÷自身、*1）
+        if (mulDivOps < 0) { value = 0; return ""; }
+        int current = rand(1, maxNum);
+        QString expr = QString::number(current);
+        value = current;
+        for (int i = 0; i < mulDivOps; ++i) {
+            bool canMultiply = timesRtn;
+            bool canDivide = divideRtn;
+            if (canDivide) {
+                int limit = qMin(maxNum, value - 1);
+                QVector<int> validDivisors;
+                for (int d = 2; d <= limit; ++d)
+                    if (value % d == 0)  validDivisors.emplace_back(d);
+                if (!validDivisors.isEmpty()) {
+                    int divisor = validDivisors[rand(0, validDivisors.size() - 1)];
+                    expr += u8"÷" + QString::number(divisor);
+                    value /= divisor;
+                    continue;
+                }
+            }
+            if (canMultiply) {
+                int num;
+                if (maxNum > 1)  num = rand(2, maxNum); 
+                else   num = 1;
+                expr += u8"×" + QString::number(num);
+                value *= num;
+                continue;
+            }
+            value = 0;
+            return "";
+        }
+        return expr;
+    }
+    QString generateQuestion(int seg)
+    {
+        if (seg < 0) return "";
+        if (seg == 0) {
+            int num = rand(1, maxNum);
+            if (num >= minAns && num <= maxAns) {
+                QString s = QString::number(num) + "=";
+                ans.emplace_back(QString::number(num));
+                questions.emplace_back(s);
+                return s;
+            }
+            else {
+                int low = qMax(1, minAns);
+                int high = qMin(maxNum, maxAns);
+                if (low <= high) {
+                    int tryNum = rand(low, high);
+                    QString s = QString::number(tryNum) + "=";
+                    ans.emplace_back(QString::number(tryNum));
+                    questions.emplace_back(s);
+                    return s;
+                }
+                return "";
+            }
+        }
+        int cnt = 0;
+        go:if (cnt > 1000000)  return "";
+        int maxK = seg + 1;
+        QVector<int> validKs;
+        QVector<int> weights;
+        for (int k = 1; k <= maxK; ++k) {
+            int addSubOps = k - 1;
+            int mulDivTotal = seg - addSubOps;
+            if (mulDivTotal < 0) continue;
+            if (addSubOps == 0) {
+                validKs.emplace_back(k);
+                weights.emplace_back(1); 
+            }
+            else {
+                if (addRtn || minusRtn) {
+                    validKs.emplace_back(k);
+                    weights.emplace_back(k); 
+                }
+            }
+        }
+        if (validKs.isEmpty()) { cnt++; goto go; }
+        int totalWeight = 0;
+        for (int w : weights) totalWeight += w;
+        int r = rand(1, totalWeight);
+        int accum = 0;
+        int k = validKs[0];
+        for (int i = 0; i < validKs.size(); ++i) {
+            accum += weights[i];
+            if (r <= accum) {
+                k = validKs[i];
+                break;
+            }
+        }
+        int addSubOps = k - 1;
+        int mulDivTotal = seg - addSubOps;
+        QVector<int> segMulDiv(k, 0);
+        int remaining = mulDivTotal;
+        for (int i = 0; i < k - 1; ++i) {
+            int give = rand(0, remaining);
+            segMulDiv[i] = give;
+            remaining -= give;
+        }
+        segMulDiv[k - 1] = remaining;
+        QVector<QString> segments;
+        QVector<int> segValues;
+        for (int i = 0; i < k; ++i) {
+            int val;
+            QString segStr = generateSegment(segMulDiv[i], val);
+            if (segStr.isEmpty()) { cnt++; goto go; }
+            segments.emplace_back(segStr);
+            segValues.emplace_back(val);
+        }
+        QString expr = segments[0];
+        int total = segValues[0];
+        for (int i = 1; i < k; ++i) {
+            QVector<int> ops;
+            if (addRtn) ops.emplace_back(1);
+            if (minusRtn) ops.emplace_back(-1);
+            if (ops.isEmpty()) { cnt++; goto go; }
+            int op = ops[rand(0, ops.size() - 1)];
+            char opChar = (op == 1) ? '+' : '-';
+            if (posRtn && total + op * segValues[i] < 0) { cnt++; goto go; }
+            expr += opChar + segments[i];
+            total += op * segValues[i];
+        }
+        if (total < minAns || total > maxAns) {
+            cnt++; goto go;
+        }
+        QString finalExpr = expr + "=";
+        ans.emplace_back(QString::number(total));
+        questions.emplace_back(finalExpr);
+        return finalExpr;
     }
 
 private:
@@ -289,9 +436,10 @@ private:
     QPoint mousePoint;
     QVector<QString> questions, ans;
     QTimer* timer;
-	const int edition = 5743568; // 版本号
+	const int edition = 43627436; // 版本号
     int maxNum = 10, colNum = 1, marginNum = 50, minAns = 0, maxAns = 20;
     int mouse_press = 0, posRtn = 1, borderRtn = 0, portraitRtn = 0, ansRtn = 0, total = 1;
+	int addRtn = 1, minusRtn = 1, timesRtn = 0, divideRtn = 0;
     double m_rec = 1.0;
 
     std::mt19937& global_urng() {

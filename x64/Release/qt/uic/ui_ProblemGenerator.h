@@ -57,6 +57,13 @@ public:
     QLineEdit *get_minAns;
     QLabel *blh;
     QLineEdit *get_maxAns;
+    QLabel *devide_1;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
+    QCheckBox *addRtn;
+    QCheckBox *minusRtn;
+    QCheckBox *timesRtn;
+    QCheckBox *divideRtn;
     QWidget *previewPage;
     QLabel *Remind;
 
@@ -135,7 +142,7 @@ public:
         editPage->setStyleSheet(QString::fromUtf8(""));
         get_maxNum = new QLineEdit(editPage);
         get_maxNum->setObjectName("get_maxNum");
-        get_maxNum->setGeometry(QRect(100, 10, 151, 31));
+        get_maxNum->setGeometry(QRect(90, 10, 151, 31));
         get_maxNum->setLayoutDirection(Qt::LeftToRight);
         get_maxNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
@@ -145,7 +152,7 @@ public:
         get_maxNum->setAlignment(Qt::AlignCenter);
         maxNum = new QLabel(editPage);
         maxNum->setObjectName("maxNum");
-        maxNum->setGeometry(QRect(20, 10, 61, 31));
+        maxNum->setGeometry(QRect(10, 10, 61, 31));
         maxNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -153,7 +160,7 @@ public:
 "color:gray;"));
         segNum = new QLabel(editPage);
         segNum->setObjectName("segNum");
-        segNum->setGeometry(QRect(20, 45, 81, 31));
+        segNum->setGeometry(QRect(10, 45, 81, 31));
         segNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -161,7 +168,7 @@ public:
 "color:gray;"));
         get_segNum = new QLineEdit(editPage);
         get_segNum->setObjectName("get_segNum");
-        get_segNum->setGeometry(QRect(100, 45, 151, 31));
+        get_segNum->setGeometry(QRect(90, 45, 151, 31));
         get_segNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -170,7 +177,7 @@ public:
         get_segNum->setAlignment(Qt::AlignCenter);
         totNum = new QLabel(editPage);
         totNum->setObjectName("totNum");
-        totNum->setGeometry(QRect(20, 80, 61, 31));
+        totNum->setGeometry(QRect(10, 80, 61, 31));
         totNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -178,7 +185,7 @@ public:
 "color:gray;"));
         get_totNum = new QLineEdit(editPage);
         get_totNum->setObjectName("get_totNum");
-        get_totNum->setGeometry(QRect(100, 80, 151, 31));
+        get_totNum->setGeometry(QRect(90, 80, 151, 31));
         get_totNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -187,7 +194,7 @@ public:
         get_totNum->setAlignment(Qt::AlignCenter);
         colNum = new QLabel(editPage);
         colNum->setObjectName("colNum");
-        colNum->setGeometry(QRect(20, 185, 61, 31));
+        colNum->setGeometry(QRect(10, 185, 61, 31));
         colNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -195,7 +202,7 @@ public:
 "color:gray;"));
         get_colNum = new QLineEdit(editPage);
         get_colNum->setObjectName("get_colNum");
-        get_colNum->setGeometry(QRect(100, 185, 151, 31));
+        get_colNum->setGeometry(QRect(90, 185, 151, 31));
         get_colNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -204,7 +211,7 @@ public:
         get_colNum->setAlignment(Qt::AlignCenter);
         saveTxtBtn = new QPushButton(editPage);
         saveTxtBtn->setObjectName("saveTxtBtn");
-        saveTxtBtn->setGeometry(QRect(320, 165, 141, 25));
+        saveTxtBtn->setGeometry(QRect(270, 165, 201, 25));
         saveTxtBtn->setCursor(QCursor(Qt::PointingHandCursor));
         saveTxtBtn->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{\n"
@@ -222,7 +229,7 @@ public:
 ""));
         viewPdfBtn = new QPushButton(editPage);
         viewPdfBtn->setObjectName("viewPdfBtn");
-        viewPdfBtn->setGeometry(QRect(320, 200, 141, 25));
+        viewPdfBtn->setGeometry(QRect(270, 200, 201, 25));
         viewPdfBtn->setCursor(QCursor(Qt::PointingHandCursor));
         viewPdfBtn->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{\n"
@@ -240,7 +247,7 @@ public:
 ""));
         savePdfBtn = new QPushButton(editPage);
         savePdfBtn->setObjectName("savePdfBtn");
-        savePdfBtn->setGeometry(QRect(320, 235, 141, 25));
+        savePdfBtn->setGeometry(QRect(270, 235, 201, 25));
         savePdfBtn->setCursor(QCursor(Qt::PointingHandCursor));
         savePdfBtn->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{\n"
@@ -258,7 +265,7 @@ public:
 ""));
         saveBtn = new QPushButton(editPage);
         saveBtn->setObjectName("saveBtn");
-        saveBtn->setGeometry(QRect(20, 235, 111, 25));
+        saveBtn->setGeometry(QRect(10, 235, 111, 25));
         saveBtn->setCursor(QCursor(Qt::PointingHandCursor));
         saveBtn->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{\n"
@@ -276,7 +283,7 @@ public:
 ""));
         generatorBtn = new QPushButton(editPage);
         generatorBtn->setObjectName("generatorBtn");
-        generatorBtn->setGeometry(QRect(140, 235, 111, 25));
+        generatorBtn->setGeometry(QRect(130, 235, 111, 25));
         generatorBtn->setCursor(QCursor(Qt::PointingHandCursor));
         generatorBtn->setStyleSheet(QString::fromUtf8("QPushButton \n"
 "{\n"
@@ -294,7 +301,7 @@ public:
 ""));
         marginNum = new QLabel(editPage);
         marginNum->setObjectName("marginNum");
-        marginNum->setGeometry(QRect(20, 150, 61, 31));
+        marginNum->setGeometry(QRect(10, 150, 61, 31));
         marginNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -302,7 +309,7 @@ public:
 "color:gray;"));
         get_marginNum = new QLineEdit(editPage);
         get_marginNum->setObjectName("get_marginNum");
-        get_marginNum->setGeometry(QRect(100, 150, 151, 31));
+        get_marginNum->setGeometry(QRect(90, 150, 151, 31));
         get_marginNum->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -311,7 +318,7 @@ public:
         get_marginNum->setAlignment(Qt::AlignCenter);
         layoutWidget = new QWidget(editPage);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(320, 10, 151, 141));
+        layoutWidget->setGeometry(QRect(330, 10, 151, 141));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -400,7 +407,7 @@ public:
 
         ansRange = new QLabel(editPage);
         ansRange->setObjectName("ansRange");
-        ansRange->setGeometry(QRect(20, 115, 61, 31));
+        ansRange->setGeometry(QRect(10, 115, 61, 31));
         ansRange->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -408,7 +415,7 @@ public:
 "color:gray;"));
         get_minAns = new QLineEdit(editPage);
         get_minAns->setObjectName("get_minAns");
-        get_minAns->setGeometry(QRect(100, 115, 61, 31));
+        get_minAns->setGeometry(QRect(90, 115, 61, 31));
         get_minAns->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -417,7 +424,7 @@ public:
         get_minAns->setAlignment(Qt::AlignCenter);
         blh = new QLabel(editPage);
         blh->setObjectName("blh");
-        blh->setGeometry(QRect(170, 115, 21, 31));
+        blh->setGeometry(QRect(160, 115, 21, 31));
         blh->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
@@ -425,13 +432,113 @@ public:
 "color:gray;"));
         get_maxAns = new QLineEdit(editPage);
         get_maxAns->setObjectName("get_maxAns");
-        get_maxAns->setGeometry(QRect(190, 115, 61, 31));
+        get_maxAns->setGeometry(QRect(180, 115, 61, 31));
         get_maxAns->setStyleSheet(QString::fromUtf8("background:transparent;\n"
 "border-radius:0px;\n"
 "border:none;\n"
 "border-bottom:0.5px solid #C8C8C8;\n"
 "font:10pt;"));
         get_maxAns->setAlignment(Qt::AlignCenter);
+        devide_1 = new QLabel(editPage);
+        devide_1->setObjectName("devide_1");
+        devide_1->setGeometry(QRect(305, 10, 16, 141));
+        devide_1->setStyleSheet(QString::fromUtf8("QLabel\n"
+"{\n"
+"	border:none;\n"
+"	border-right:1px solid #F7F7F7;\n"
+"}"));
+        widget = new QWidget(editPage);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(270, 10, 40, 141));
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        addRtn = new QCheckBox(widget);
+        addRtn->setObjectName("addRtn");
+        addRtn->setCursor(QCursor(Qt::PointingHandCursor));
+        addRtn->setStyleSheet(QString::fromUtf8("QCheckBox{\n"
+"	font-size:13px;\n"
+"	color:black;\n"
+"}\n"
+"QCheckBox::indicator{\n"
+"	width:14px;\n"
+"	height:14px;\n"
+"}\n"
+"QCheckBox::indicator::unchecked {\n"
+"	image: url(:/uiDesign/Check_OFF.png);\n"
+"}\n"
+"QCheckBox::indicator::checked { \n"
+"	image: url(:/uiDesign/Check_ON.png);\n"
+"}"));
+        addRtn->setChecked(true);
+
+        verticalLayout_2->addWidget(addRtn);
+
+        minusRtn = new QCheckBox(widget);
+        minusRtn->setObjectName("minusRtn");
+        minusRtn->setCursor(QCursor(Qt::PointingHandCursor));
+        minusRtn->setStyleSheet(QString::fromUtf8("QCheckBox{\n"
+"	font-size:13px;\n"
+"	color:black;\n"
+"}\n"
+"QCheckBox::indicator{\n"
+"	width:14px;\n"
+"	height:14px;\n"
+"}\n"
+"QCheckBox::indicator::unchecked {\n"
+"	image: url(:/uiDesign/Check_OFF.png);\n"
+"}\n"
+"QCheckBox::indicator::checked { \n"
+"	image: url(:/uiDesign/Check_ON.png);\n"
+"}"));
+        minusRtn->setChecked(true);
+
+        verticalLayout_2->addWidget(minusRtn);
+
+        timesRtn = new QCheckBox(widget);
+        timesRtn->setObjectName("timesRtn");
+        timesRtn->setCursor(QCursor(Qt::PointingHandCursor));
+        timesRtn->setStyleSheet(QString::fromUtf8("QCheckBox{\n"
+"	font-size:13px;\n"
+"	color:black;\n"
+"}\n"
+"QCheckBox::indicator{\n"
+"	width:14px;\n"
+"	height:14px;\n"
+"}\n"
+"QCheckBox::indicator::unchecked {\n"
+"	image: url(:/uiDesign/Check_OFF.png);\n"
+"}\n"
+"QCheckBox::indicator::checked { \n"
+"	image: url(:/uiDesign/Check_ON.png);\n"
+"}"));
+        timesRtn->setChecked(false);
+
+        verticalLayout_2->addWidget(timesRtn);
+
+        divideRtn = new QCheckBox(widget);
+        divideRtn->setObjectName("divideRtn");
+        divideRtn->setCursor(QCursor(Qt::PointingHandCursor));
+        divideRtn->setStyleSheet(QString::fromUtf8("QCheckBox{\n"
+"	font-size:13px;\n"
+"	color:black;\n"
+"}\n"
+"QCheckBox::indicator{\n"
+"	width:14px;\n"
+"	height:14px;\n"
+"}\n"
+"QCheckBox::indicator::unchecked {\n"
+"	image: url(:/uiDesign/Check_OFF.png);\n"
+"}\n"
+"QCheckBox::indicator::checked { \n"
+"	image: url(:/uiDesign/Check_ON.png);\n"
+"}"));
+        divideRtn->setChecked(false);
+
+        verticalLayout_2->addWidget(divideRtn);
+
         pages->addWidget(editPage);
         previewPage = new QWidget();
         previewPage->setObjectName("previewPage");
@@ -488,6 +595,11 @@ public:
         get_minAns->setText(QCoreApplication::translate("ProblemGeneratorClass", "0", nullptr));
         blh->setText(QCoreApplication::translate("ProblemGeneratorClass", "\357\275\236", nullptr));
         get_maxAns->setText(QCoreApplication::translate("ProblemGeneratorClass", "20", nullptr));
+        devide_1->setText(QString());
+        addRtn->setText(QCoreApplication::translate("ProblemGeneratorClass", " \345\212\240", nullptr));
+        minusRtn->setText(QCoreApplication::translate("ProblemGeneratorClass", " \345\207\217", nullptr));
+        timesRtn->setText(QCoreApplication::translate("ProblemGeneratorClass", " \344\271\230", nullptr));
+        divideRtn->setText(QCoreApplication::translate("ProblemGeneratorClass", " \351\231\244", nullptr));
         Remind->setText(QString());
     } // retranslateUi
 
